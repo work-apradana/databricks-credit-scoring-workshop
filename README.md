@@ -3,7 +3,7 @@ This repository contains the materials for a Databricks workshop focused on cred
 
 This workshop covers data ingestion, processing, data exploration, machine learning with MLFlow, data governance, up to AI/BI with dashboard and Genie spaces.
 
-## Databricks Free Edition
+## ⭐ Databricks Free Edition
 This workshop can run on the [Databricks Free Edition](https://databricks.com/try-databricks) which provides a free cluster with 15 GB of memory and 6 GB of storage. You can sign up for the free edition using your email address.
 
 How to sign up for Databricks Free Edition:
@@ -11,7 +11,7 @@ How to sign up for Databricks Free Edition:
 2. Enter your email address and click "Get Started".
 3. Follow the instructions in the email to create your account and set up your workspace.
 
-## Following the Workshop
+## 🚀 Following the Workshop
 1. Clone this repository to your local machine.
 2. Have your Databricks Free Edition account & workspace ready.
 3. Upload the notebook `notebooks/00-setup.ipynb` to your Databricks workspace and run it to set up the environment.
