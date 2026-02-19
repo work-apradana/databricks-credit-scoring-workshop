@@ -1,3 +1,5 @@
+# exclude some files
+export-genie-space.sh
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

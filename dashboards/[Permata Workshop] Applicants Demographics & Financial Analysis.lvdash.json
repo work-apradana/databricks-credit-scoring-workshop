@@ -1,0 +1,1806 @@
+{
+  "datasets": [
+    {
+      "name": "319c2b4a",
+      "displayName": "Applicants Data",
+      "queryLines": [
+        "SELECT * FROM applicants"
+      ],
+      "catalog": "apradana_demo_permata",
+      "schema": "silver"
+    },
+    {
+      "name": "da1d4d08",
+      "displayName": "Loans Data",
+      "queryLines": [
+        "SELECT * FROM loans"
+      ],
+      "catalog": "apradana_demo_permata",
+      "schema": "silver"
+    },
+    {
+      "name": "48c718d0",
+      "displayName": "Repayments Data",
+      "queryLines": [
+        "SELECT * FROM repayments"
+      ],
+      "catalog": "apradana_demo_permata",
+      "schema": "gold"
+    }
+  ],
+  "pages": [
+    {
+      "name": "cd3a88b8",
+      "displayName": "Applicants",
+      "layout": [
+        {
+          "widget": {
+            "name": "age_distribution",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "jenis_kelamin",
+                      "expression": "`jenis_kelamin`"
+                    },
+                    {
+                      "name": "usia",
+                      "expression": "`usia`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Age Distribution",
+                "showTitle": true
+              },
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "usia",
+                  "displayName": "Age",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "jenis_kelamin",
+                  "displayName": "Gender",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 6,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "education_levels",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "pendidikan_terakhir",
+                      "expression": "`pendidikan_terakhir`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Education Levels",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "pendidikan_terakhir",
+                  "displayName": "Education",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Number of Applicants",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "pendidikan_terakhir",
+                  "displayName": "Education",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 3,
+            "width": 6,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "marital_status",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    },
+                    {
+                      "name": "status_pernikahan",
+                      "expression": "`status_pernikahan`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Marital Status",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Count"
+                },
+                "color": {
+                  "fieldName": "status_pernikahan",
+                  "displayName": "Status",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 14,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "total_applicants",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Total Applicants",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "count(*)",
+                  "displayName": "Total Applicants"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 12,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "income_distribution",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "jenis_pekerjaan",
+                      "expression": "`jenis_pekerjaan`"
+                    },
+                    {
+                      "name": "pendapatan_bulanan",
+                      "expression": "`pendapatan_bulanan`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Monthly Income Distribution",
+                "showTitle": true
+              },
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "pendapatan_bulanan",
+                  "displayName": "Monthly Income (IDR)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "jenis_pekerjaan",
+                  "displayName": "Employment Type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 23,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "employment_types",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "jenis_pekerjaan",
+                      "expression": "`jenis_pekerjaan`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Employment Types",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "jenis_pekerjaan",
+                  "displayName": "Job Type",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Number of Applicants",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "jenis_pekerjaan",
+                  "displayName": "Job Type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 23,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_income",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "avg(pendapatan_bulanan)",
+                      "expression": "AVG(`pendapatan_bulanan`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Average Monthly Income",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(pendapatan_bulanan)",
+                  "format": {
+                    "type": "number-plain",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 0
+                    },
+                    "abbreviation": "compact"
+                  },
+                  "displayName": "Avg Income (IDR)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 16,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "province_distribution",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "319c2b4a",
+                  "fields": [
+                    {
+                      "name": "provinsi",
+                      "expression": "`provinsi`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Applicants by Province",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "provinsi",
+                  "displayName": "Province",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Number of Applicants",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "provinsi",
+                  "displayName": "Province",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 32,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "dashboard_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Applicants Demographics & Financial Analysis\n",
+                "\n",
+                "Comprehensive overview of loan applicant profiles including demographics, financial status, and geographic distribution.\n",
+                "\n",
+                "*Note: This is generated purely by Databricks Dashboard Authoring Agent*."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "age_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Age Distribution by Gender** - Shows the age spread of loan applicants, segmented by gender. Helps identify target demographics and age-related risk patterns."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "education_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Education Levels** - Distribution of applicants' highest education attainment. Higher education often correlates with income stability and lower default risk."
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 12,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "marital_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Marital Status Breakdown** - Shows relationship status distribution. Married applicants may have different financial obligations and stability profiles."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 21,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "income_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Income Distribution by Employment** - Monthly income spread colored by job type. Critical for assessing loan affordability and repayment capacity."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 30,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "employment_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Employment Type Distribution** - Shows applicant distribution across job sectors. Government employees (PNS, BUMN, TNI/Polri) typically have stable income."
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 30,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "province_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Geographic Distribution** - Applicant concentration by province. Helps identify regional market opportunities and concentration risk."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 39,
+            "width": 12,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "6fc334fb",
+      "displayName": "Loans Profile",
+      "layout": [
+        {
+          "widget": {
+            "name": "loans_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Loans Portfolio Analysis\n",
+                "\n",
+                "Comprehensive overview of loan portfolio including amounts, terms, risk profiles, and default analysis.\n",
+                "\n",
+                "*Note: This is generated purely by Databricks Dashboard Authoring Agent*."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "total_loans",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Total Loans",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "count(*)",
+                  "displayName": "Total Loans"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_loan_amount",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "avg(jumlah_pinjaman)",
+                      "expression": "AVG(`jumlah_pinjaman`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Average Loan Amount",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(jumlah_pinjaman)",
+                  "format": {
+                    "type": "number-plain",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 0
+                    },
+                    "abbreviation": "compact"
+                  },
+                  "displayName": "Avg Amount (IDR)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 3,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "default_rate",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "avg(flag_default)",
+                      "expression": "AVG(`flag_default`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Default Rate",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(flag_default)",
+                  "format": {
+                    "type": "number-percent",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 1
+                    }
+                  },
+                  "displayName": "Default Rate"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 3,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "loan_purpose",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "tujuan_pinjaman",
+                      "expression": "`tujuan_pinjaman`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Loan Purpose Distribution",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "tujuan_pinjaman",
+                  "displayName": "Purpose",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Number of Loans",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "tujuan_pinjaman",
+                  "displayName": "Purpose",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "loan_amount_dist",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "flag_default",
+                      "expression": "`flag_default`"
+                    },
+                    {
+                      "name": "jumlah_pinjaman",
+                      "expression": "`jumlah_pinjaman`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Loan Amount Distribution",
+                "showTitle": true
+              },
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "jumlah_pinjaman",
+                  "displayName": "Loan Amount (IDR)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "flag_default",
+                  "displayName": "Default Status",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 7,
+            "width": 6,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "tenor_distribution",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "tenor_bulan",
+                      "expression": "`tenor_bulan`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Loan Tenor Distribution",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "tenor_bulan",
+                  "displayName": "Tenor (Months)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Number of Loans",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "tenor_bulan",
+                  "displayName": "Tenor",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 18,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "credit_score_dist",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "skor_kredit",
+                      "expression": "`skor_kredit`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Credit Score Distribution",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "skor_kredit",
+                  "displayName": "Credit Score",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Number of Loans",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "skor_kredit",
+                  "displayName": "Score",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 18,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "collateral_analysis",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    },
+                    {
+                      "name": "agunan",
+                      "expression": "`agunan`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Collateral Status",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Count"
+                },
+                "color": {
+                  "fieldName": "agunan",
+                  "displayName": "Collateral",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 27,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "loan_purpose_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Loan Purpose Distribution** - Shows why customers are borrowing. Konsumtif, Pendidikan, and KPR (mortgage) are the most common purposes, indicating diverse portfolio mix."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 16,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "loan_amount_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Loan Amount Distribution** - Histogram of loan sizes colored by default status. Helps identify if larger loans have different default patterns than smaller ones."
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 16,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "tenor_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Loan Tenor Distribution** - Shows preferred loan term lengths. Longer tenors reduce monthly payments but increase total interest paid and exposure duration."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 25,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "credit_score_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Credit Score Distribution** - Risk profile of borrowers (1=highest risk, 5=lowest risk). Higher scores indicate better creditworthiness and lower expected default rates."
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 25,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "collateral_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Collateral Status** - Split between secured (Ya) and unsecured (Tidak) loans. Secured loans have lower risk due to asset backing, while unsecured loans rely solely on borrower creditworthiness."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 34,
+            "width": 12,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "6d84d0c9",
+      "displayName": "Loan Repayments",
+      "layout": [
+        {
+          "widget": {
+            "name": "repayments_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Loan Repayment Performance Analysis\n",
+                "\n",
+                "Comprehensive overview of repayment behavior including timeliness, delinquency patterns, penalties, and payment completion rates.\n",
+                "\n",
+                "*Note: This is generated purely by Databricks Dashboard Authoring Agent*."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "ontime_rate_v2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "avg(rasio_tepat_waktu)",
+                      "expression": "AVG(`rasio_tepat_waktu`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "On-Time Payment Rate",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(rasio_tepat_waktu)",
+                  "format": {
+                    "type": "number-percent",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 1
+                    }
+                  },
+                  "displayName": "On-Time Rate"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_late_days_v2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "avg(avg_hari_keterlambatan)",
+                      "expression": "AVG(`avg_hari_keterlambatan`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Avg Late Days",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(avg_hari_keterlambatan)",
+                  "format": {
+                    "type": "number-plain",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 1
+                    },
+                    "abbreviation": "none"
+                  },
+                  "displayName": "Avg Days Late"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 3,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "total_penalties_v2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "sum(total_denda)",
+                      "expression": "SUM(`total_denda`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Total Penalties",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_denda)",
+                  "format": {
+                    "type": "number-plain",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 0
+                    },
+                    "abbreviation": "compact"
+                  },
+                  "displayName": "Total Penalties (IDR)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 3,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "ontime_vs_late",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "sum(count_tepat_waktu)",
+                      "expression": "SUM(`count_tepat_waktu`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "On-Time vs Late Payments",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(count_tepat_waktu)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Count"
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "late_days_histogram",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "max_hari_keterlambatan",
+                      "expression": "`max_hari_keterlambatan`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Late Payment Days Distribution",
+                "showTitle": true
+              },
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "max_hari_keterlambatan",
+                  "displayName": "Max Days Late",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "displayName": "Number of Loans",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "max_hari_keterlambatan",
+                  "displayName": "Delinquency",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 7,
+            "width": 6,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "payment_completion",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "rasio_tepat_waktu",
+                      "expression": "`rasio_tepat_waktu`"
+                    },
+                    {
+                      "name": "total_payments",
+                      "expression": "`total_payments`"
+                    },
+                    {
+                      "name": "rasio_pembayaran",
+                      "expression": "`rasio_pembayaran`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Payment Completion Ratio",
+                "showTitle": true
+              },
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "total_payments",
+                  "displayName": "Total Payments",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "rasio_pembayaran",
+                  "displayName": "Payment Ratio",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "rasio_tepat_waktu",
+                  "displayName": "On-Time Rate",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 18,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "penalty_by_late",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "count_terlambat",
+                      "expression": "`count_terlambat`"
+                    },
+                    {
+                      "name": "sum(total_denda)",
+                      "expression": "SUM(`total_denda`)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`count_terlambat` > 0"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Penalty Distribution by Late Payments",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "count_terlambat",
+                  "displayName": "Late Payment Count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_denda)",
+                  "format": {
+                    "type": "number-plain",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 0
+                    },
+                    "abbreviation": "compact"
+                  },
+                  "displayName": "Total Penalties (IDR)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "count_terlambat",
+                  "displayName": "Late Count",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 18,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "total_collected",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "sum(total_dibayar)",
+                      "expression": "SUM(`total_dibayar`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Total Amount Collected",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_dibayar)",
+                  "format": {
+                    "type": "number-plain",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 0
+                    },
+                    "abbreviation": "compact"
+                  },
+                  "displayName": "Total Collected (IDR)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 27,
+            "width": 12,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "ontime_desc",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**On-Time vs Late Payments** - Breakdown of payment behavior across all loans. Higher on-time rates indicate strong borrower discipline and lower portfolio risk."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 16,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "late_days_desc_v2",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Late Payment Days Distribution** - Shows severity of delinquency by maximum days late. Loans with 60+ days late are at high risk of default and require immediate collection action."
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 16,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "payment_ratio_desc_v2",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Payment Completion Ratio** - Scatter plot showing actual payments vs expected payments, colored by on-time rate. Points above 1.0 indicate overpayments or early settlements."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 25,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "penalty_desc_v2",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**Penalty Distribution** - Total penalties accumulated by late payment frequency. Shows the financial impact of delinquency and helps identify chronic late payers."
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 25,
+            "width": 6,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "global_filters",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "loan_id_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f10db5b2db1c099a0552c08829282a/datasets/01f10db7eb7c122689feabf129b1c2aa_loan_id",
+                "query": {
+                  "datasetName": "da1d4d08",
+                  "fields": [
+                    {
+                      "name": "loan_id",
+                      "expression": "`loan_id`"
+                    },
+                    {
+                      "name": "loan_id_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f10db5b2db1c099a0552c08829282a/datasets/01f10db896bb1ffbaebbad439caa374f_loan_id",
+                "query": {
+                  "datasetName": "48c718d0",
+                  "fields": [
+                    {
+                      "name": "loan_id",
+                      "expression": "`loan_id`"
+                    },
+                    {
+                      "name": "loan_id_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Loan ID Filter",
+                "showTitle": true
+              },
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "loan_id",
+                    "queryName": "dashboards/01f10db5b2db1c099a0552c08829282a/datasets/01f10db7eb7c122689feabf129b1c2aa_loan_id"
+                  },
+                  {
+                    "fieldName": "loan_id",
+                    "queryName": "dashboards/01f10db5b2db1c099a0552c08829282a/datasets/01f10db896bb1ffbaebbad439caa374f_loan_id"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 4,
+            "height": 4
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
