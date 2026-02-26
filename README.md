@@ -17,3 +17,18 @@ How to sign up for Databricks Free Edition:
 3. Upload the notebook `notebooks/00-setup.ipynb` to your Databricks workspace and run it to set up the environment.
 4. Import the datasets from `datasets` directory to your Databricks workspace under the directory `/Volumes/{your-catalog}/{your-schema}/{your-volume}/credit_datasets`.
 5. Follow the notebooks in order, starting from `notebooks/01-Data-Ingestion.ipynb` to `notebooks/05-Data-Governance.ipynb`, to complete the workshop.
+
+## Example Dashboards & Lineages
+
+Some dashboards created during the workshop:
+
+### Loans Porfolio Dashboard
+![Dashboard 1](assets/credit-decision-score-dashboard-1.png)
+
+
+### Medallion Layer
+![Medallion Layer](assets/medallion-layer-example.png)
+
+
+### Data Lineage
+![Data Lineage 1](assets/credit-decision-data-lineage.png)
